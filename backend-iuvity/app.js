@@ -1,8 +1,13 @@
 var createError = require('http-errors');
 var express = require('express');
+const mongoose = require('mongoose');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+require('dotenv').config();
+
+const mongoString = process.env.DATABASE_URL
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -26,6 +31,18 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+mongoose.connect(mongoString);
+const database = mongoose.connection;
+
+database.on('error', (error) => {
+  console.log(error);
+});
+
+database.once('connected', () => {
+  console.log('Database Connected!');
+});
+
 
 // error handler
 app.use(function(err, req, res, next) {
