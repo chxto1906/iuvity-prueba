@@ -23,8 +23,9 @@ function usersApi(app) {
         console.dir(usuario)
         try {
             const createdUser = await usuariosService.create(usuario);
+            const user = await usuariosService.get(createdUser.insertedId);
             res.status(201).json({
-                data: createdUser.insertedId,
+                data: user,
                 message: "Usuario creado."
             });
         } catch (err) {
@@ -71,11 +72,21 @@ function usersApi(app) {
         const { body: usuario } = req;
         try {
             const updatedusuario = await usuariosService.updateOne(id,usuario);
-            const user = await usuariosService.get(id);
-            res.status(200).json({
-                data: user,
-                message: "Usuario actualizado."
-            });
+
+            if (updatedusuario.modifiedCount > 0){
+                const user = await usuariosService.get(id);
+                res.status(200).json({
+                    data: user,
+                    message: "Usuario actualizado."
+                });
+            } else {
+                
+                res.status(400).json({
+                    data: null,
+                    message: "Usuario no pudo ser actualizado."
+                });
+            }
+
         } catch (err) {
             next(err);
         }
@@ -88,10 +99,16 @@ function usersApi(app) {
         const { id } = req.params;
         try {
             const deletedUsuario = await usuariosService.deleteOne(id);
-            res.status(200).json({
-                data: deletedUsuario,
-                message: "Usuario eliminado."
-            });
+            if (deletedUsuario.deletedCount > 0)
+                res.status(200).json({
+                    data: null,
+                    message: "Usuario eliminado."
+                });
+            else 
+                res.status(400).json({
+                    data: null,
+                    message: "Usuario no pudo ser eliminado."
+                });
         } catch (err) {
             next(err);
         }

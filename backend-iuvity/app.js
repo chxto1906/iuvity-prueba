@@ -4,23 +4,23 @@ const { MongoClient } = require("mongodb");
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 
 const usersApiRouter = require('./routes/users.routes');
 
 app = express();
-
+app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-//app.use(express.urlencoded({ extended: false }));
-//app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 const { config } = require("./config");
 const USER = encodeURIComponent(config.dbUser);
@@ -44,7 +44,7 @@ async function main() {
   
   usersApiRouter(app);
 
-  //app.use('/', indexRouter);
+  app.use('/', indexRouter);
 
   // error handlers
   app.use(logErrors);

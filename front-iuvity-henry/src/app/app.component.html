@@ -1,3 +1,25 @@
-<h1>Hola mundo</h1>
-<h2>{{ 'Hola mundo'.repeat(5) }}</h2>
-<p>3 + 3 = {{ 3+3 }}</p>
+<!-- Toolbar -->
+<mat-toolbar color="primary" class="header">
+  <div>Usuarios CRUD</div>
+  <span class="nav-tool-items">
+    <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
+  </span>
+</mat-toolbar>
+<mat-sidenav-container>
+  <!-- Sidenav -->
+  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
+    [fixedTopGap]="55">
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="active" routerLink="/agregar-usuario">
+        <mat-icon>add</mat-icon> Agregar usuario
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/lista-usuarios">
+        <mat-icon>format_list_bulleted</mat-icon> Lista de usuarios
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <!-- Main content -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
