@@ -8,11 +8,11 @@ FROM base as production
 ENV NODE_ENV=production
 ENV NODE_OPTIONS=--max_old_space_size=2048
 RUN npm ci
-#COPY . /
+COPY . /
 CMD ["node", "bin/www"]
 
 FROM base as dev
 ENV NODE_ENV=development
 RUN npm install -g nodemon && npm install
-#COPY . /
+COPY . /
 CMD ["nodemon", "bin/www"]

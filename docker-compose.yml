@@ -34,7 +34,7 @@ services:
       target: dev
     container_name: backend-iuvity  
     volumes:
-      - .:/src
+      - ./backend-iuvity:/src
     depends_on:
       - mongodb
     command: npm run start:dev
