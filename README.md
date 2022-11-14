@@ -1,6 +1,8 @@
 # iuvity-prueba
 Prueba para Iuvity
 
+1. docker compose up -d
+
 Back-End NodeJs (Express): http://localhost:3000 
 Front-End Angular: http://localhost:4200 
 MongoDB: Puerto- 27017 
