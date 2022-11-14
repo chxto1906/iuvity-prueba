@@ -43,6 +43,8 @@ export class AgregarUsuarioComponent implements OnInit {
     if (this.usuarioForm.valid) {
       this.usuarioApi.AgregarUsuario(this.usuarioForm.value).subscribe((res) => {
         this.ngZone.run(() => this.router.navigateByUrl('/'));
+      },error => {
+        alert(error);
       });
     }
   }

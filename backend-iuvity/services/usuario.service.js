@@ -27,6 +27,14 @@ class UsuarioService {
         const result = await this.mongoDB.deleteOne(this.collection, id);
         return result;
     }
+    async delete(query) {
+        const result = await this.mongoDB.delete(this.collection, query);
+        return result;
+    }
+    async deleteMany(query) {
+        const result = await this.mongoDB.deleteMany(this.collection, query);
+        return result;
+    }
 
 }
 

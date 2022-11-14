@@ -43,3 +43,19 @@ services:
     environment:
       NODE_ENV: development
       DEBUG: backend-iuvity:*
+  
+  frontend:
+    build:
+      context: ./frontend-iuvity
+      target: dev
+    container_name: frontend-iuvity  
+    volumes:
+      - ./frontend-iuvity:/src
+    depends_on:
+      - backend
+    command: ng serve --host 0.0.0.0 --port 4200
+    ports:
+      - "4200:4200"
+    environment:
+      NODE_ENV: development
+      DEBUG: frontend-iuvity:*

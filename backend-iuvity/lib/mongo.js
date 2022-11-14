@@ -21,6 +21,9 @@ class MongoLib {
   deleteOne(collection, id) {
     return this.db.collection(collection).deleteOne({ _id: ObjectId(id) }); //elimina físicamente
   }
+  deleteMany(collection, query) {
+    return this.db.collection(collection).deleteMany(query); //elimina físicamente
+  }
 }
 
 module.exports = MongoLib;

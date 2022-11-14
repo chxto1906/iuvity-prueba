@@ -83,7 +83,7 @@ function usersApi(app) {
                 
                 res.status(400).json({
                     data: null,
-                    message: "Usuario no pudo ser actualizado."
+                    message: "Usuario no actualizado."
                 });
             }
 

@@ -58,8 +58,10 @@ export class EditarUsuarioComponent implements OnInit {
     if (window.confirm('¿Estás seguro de actualizar el usuario?')) {
       this.usuarioApi
         .ActualizarUsuario(id, this.usuarioForm.value)
-        .subscribe((res) => {
+        .subscribe(res => {
           this.ngZone.run(() => this.router.navigateByUrl('/'));
+        },error => {
+          alert(error);
         });
     }
   }

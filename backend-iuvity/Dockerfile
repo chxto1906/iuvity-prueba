@@ -13,6 +13,7 @@ CMD ["node", "bin/www"]
 
 FROM base as dev
 ENV NODE_ENV=development
+ENV NODE_OPTIONS=--max_old_space_size=2048
 RUN npm install -g nodemon && npm install
 COPY . /
 CMD ["nodemon", "bin/www"]

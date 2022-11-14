@@ -5,10 +5,10 @@ import { EditarUsuarioComponent } from './components/editar-usuario/editar-usuar
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "lista-usuarios"},
-  { path: "agregar-usuario", component: AgregarUsuarioComponent},
-  { path: "editar-usuario/:id", component: EditarUsuarioComponent },
-  { path: "lista-usuarios", component: ListaUsuariosComponent },
+  { path: "", pathMatch: "full", redirectTo: "usuarios"},
+  { path: "usuario", component: AgregarUsuarioComponent},
+  { path: "usuario/:id", component: EditarUsuarioComponent },
+  { path: "usuarios", component: ListaUsuariosComponent },
 ];
 
 @NgModule({
